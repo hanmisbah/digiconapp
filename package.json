@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "react-native-reanimated": "^3.17.1"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "^18.0.0"
+  }
+}
