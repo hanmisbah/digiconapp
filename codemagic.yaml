@@ -7,20 +7,41 @@ workflows:
       groups:
         - google_play_credentials
       vars:
-        PACKAGE_NAME: "com.yourcompany.yourapp"
+        PACKAGE_NAME: "com.yourcompany.yourapp"  # Replace this with your actual package name
       flutter: stable
     scripts:
       - name: Install dependencies
         script: |
+          echo "Checking Node.js & NPM versions..."
+          node -v
+          npm -v
+          
+          echo "Installing dependencies..."
           npm install
+          npx pod-install
+
+      - name: Prepare Android Build
+        script: |
+          echo "Setting up Java & Watchman..."
+          brew install watchman
+          java -version
+
+          echo "Cleaning Gradle cache..."
+          cd android
+          ./gradlew clean
+          chmod +x gradlew
+
       - name: Build Android App Bundle
         script: |
+          echo "Building AAB file..."
           cd android
-          ./gradlew bundleRelease
+          ./gradlew bundleRelease || { echo "Build failed!" && exit 1; }
+
     artifacts:
       - android/app/build/outputs/**/*.aab
+
     publishing:
       email:
         recipients:
-          - "your-email@example.com"
+          - "misbahsshanidia@gmail.com"  # Change this to your actual email
 
