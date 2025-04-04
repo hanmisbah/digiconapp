@@ -7,7 +7,7 @@ workflows:
       groups:
         - google_play_credentials
       vars:
-        PACKAGE_NAME: "com.yourcompany.yourapp"  # Replace this with your actual package name
+        PACKAGE_NAME: "com.digiconapp"  # Replace this with your actual package name
       flutter: stable
     scripts:
       - name: Install dependencies
